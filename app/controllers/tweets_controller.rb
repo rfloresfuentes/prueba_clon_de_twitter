@@ -3,11 +3,22 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    @pagy, @tweets = pagy(Tweet.all)
+    if params[:query_text].present?
+      @tweets = @tweets.search_full_text(params[:query_text])
+    end
   end
 
   # GET /tweets/1 or /tweets/1.json
   def show
+  end
+
+  #Ruta collection
+  def search
+  end
+  
+  #Ruta miembro
+  def preview
   end
 
   # GET /tweets/new
@@ -25,7 +36,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
+        format.html { redirect_to @tweet, notice: "El tuit se creó correctamente." }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +49,7 @@ class TweetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: "Tweet was successfully updated." }
+        format.html { redirect_to @tweet, notice: "El Tuit fue actualizado con éxito." }
         format.json { render :show, status: :ok, location: @tweet }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,10 +63,12 @@ class TweetsController < ApplicationController
     @tweet.destroy!
 
     respond_to do |format|
-      format.html { redirect_to tweets_path, status: :see_other, notice: "Tweet was successfully destroyed." }
+      format.html { redirect_to tweets_path, status: :see_other, notice: "El Tuit fue Borrado éxitosamente." }
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

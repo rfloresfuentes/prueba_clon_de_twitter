@@ -55,3 +55,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'pg_search'
+
+gem 'pagy'
