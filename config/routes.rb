@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :tweets
+  resources :tweets do
     member do
-      get "preview"
+      get 'preview'
     end
   
     collection do
