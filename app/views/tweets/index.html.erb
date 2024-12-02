@@ -2,21 +2,7 @@
 
 <% content_for :title, "Tweets" %>
 
-<h1>Tweets</h1>
-
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New tweet", new_tweet_path %>
-
-<p> nuevo código +++++++++++++++++++++++++++++++++++++++++++++++</p>
-<h1 class="my-2">Twitts</h1>
+<h1 class="my-2">Tweets</h1>
 <div class="container text-center mb-2 --bs-body-bg" style="max-width: 20rem;">
 
   <div class="d_flex justify-content-between">
